@@ -11,6 +11,9 @@ function App() {
           <NavItem>
             <NavLink href="/tickets">Service Tickets</NavLink>
           </NavItem>
+          <NavItem>
+            <NavLink href="/create">Submit a Ticket</NavLink>
+          </NavItem>
         </Nav>
       </Navbar>
       <Outlet />
