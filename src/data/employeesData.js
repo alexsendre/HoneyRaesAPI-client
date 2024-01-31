@@ -6,7 +6,7 @@ const getEmployees = () => {
 
 const getEmployeesById = (id) => {
   return fetch(`${_apiUrl}/${id}`).then((r) => r.json());
-}
+};
 
 export {
   getEmployees,

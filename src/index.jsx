@@ -12,6 +12,8 @@ import EmployeeList from "./components/employees/EmployeeList";
 import Employees from "./components/employees/Employees";
 import Customers from "./components/customers/Customers";
 import CustomerList from "./components/customers/CustomersList";
+import EmployeeDetails from "./components/employees/EmployeeDetails";
+import CustomerDetails from "./components/customers/CustomerDetails";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -28,12 +30,14 @@ root.render(
       <Route path="/" element={<App />}>
         <Route path="employees" element={<Employees />}>
           <Route index element={<EmployeeList />} />
+          <Route path=":id" element={<EmployeeDetails />} />
         </Route>
       </Route>
 
       <Route path="/" element={<App />}>
         <Route path="customers" element={<Customers />}>
           <Route index element={<CustomerList />} />
+          <Route path=":id" element={<CustomerDetails />} />
         </Route>
       </Route>
     </Routes>
