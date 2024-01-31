@@ -4,6 +4,12 @@ const getServiceTickets = () => {
   return fetch(_apiUrl).then((r) => r.json());
 };
 
+//export a function here that gets a ticket by id
+
+const getTicketById = (id) => {
+  return fetch(`${_apiUrl}/${id}`).then((r) => r.json());
+};
+
 const postServiceTickets = (payload) => new Promise((resolve, reject) => {
   fetch(`${_apiUrl}`, {
     method: 'POST',
@@ -16,11 +22,8 @@ const postServiceTickets = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const getTicketById = (id) => {
-  return fetch(`${_apiUrl}/${id}`).then((r) => r.json());
-}
 
-//export a function here that gets a ticket by id
+
 
 export {
   getServiceTickets,
