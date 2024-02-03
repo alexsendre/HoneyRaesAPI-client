@@ -44,7 +44,7 @@ export default function TicketDetails() {
         </tr>
         <tr>
           <th scope="row">Employee</th>
-          <td>{ticket.employee.name || "Unassigned"}</td>
+          <td>{ticket.employee?.name || "Unassigned"}</td>
         </tr>
         <tr>
           <th scope="row">Completed?</th>
