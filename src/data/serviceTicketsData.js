@@ -28,8 +28,21 @@ const createTickets = async (payload) => {
   return response.json();
 };
 
+const deleteTicket = (id) => new Promise((resolve, reject) => {
+  fetch(`${_apiUrl}/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    // .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
 export {
   getServiceTickets,
   createTickets,
-  getTicketById
+  getTicketById,
+  deleteTicket
 }

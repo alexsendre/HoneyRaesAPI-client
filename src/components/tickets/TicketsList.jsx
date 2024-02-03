@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button, Table } from "reactstrap";
-import { getServiceTickets } from "../../data/serviceTicketsData";
+import { deleteTicket, getServiceTickets } from "../../data/serviceTicketsData";
 import { Link } from "react-router-dom";
 
 export default function TicketsList() {
@@ -8,7 +8,13 @@ export default function TicketsList() {
 
   useEffect(() => {
     getServiceTickets().then(setTickets);
-  }, []);
+  }, [tickets]);
+
+  const removeTicket = (id) => {
+    if (window.confirm("Delete ticket?")) {
+      deleteTicket(id);
+    }
+  }
 
   return (
     <Table>
@@ -31,7 +37,7 @@ export default function TicketsList() {
               <Link to={`${t.id}`}>Details</Link>
             </td>
             <td>
-              <Button>delete</Button>
+              <Button color="danger" size="md" onClick={() => removeTicket(t.id)}>Delete</Button>
             </td>
           </tr>
         ))}
