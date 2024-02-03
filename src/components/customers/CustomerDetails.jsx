@@ -10,8 +10,17 @@ export default function CustomerDetails() {
 
   //add useEffect here to get the ticket details from the API
   useEffect(() => {
-    getCustomersById(id).then(setCustomer);
-  }, [id]);
+    const fetchCustomerDetails = async () => {
+      try {
+        const customerDetails = await getCustomersById(id);
+        setCustomer(customerDetails);
+      } catch (error) {
+        console.error("Error fetching Customer details:", error);
+      }
+    };
+
+    fetchCustomerDetails();
+  }, []);
 
   if (!customer) {
     return null;
@@ -22,7 +31,7 @@ export default function CustomerDetails() {
       <tbody>
         <tr>
           <th scope="row">Id</th>
-          <td>{customer.id}</td>
+          <td>{customer?.id}</td>
         </tr>
         <tr>
           <th scope="row">Name</th>

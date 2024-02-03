@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Table } from "reactstrap";
+import { Button, Table } from "reactstrap";
 import { getServiceTickets } from "../../data/serviceTicketsData";
 import { Link } from "react-router-dom";
 
@@ -18,7 +18,6 @@ export default function TicketsList() {
           <th>Description</th>
           <th>Emergency?</th>
           <th>Date Completed</th>
-          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -30,6 +29,9 @@ export default function TicketsList() {
             <td>{t.dateCompleted?.split("T")[0] || "Incomplete"}</td>
             <td>
               <Link to={`${t.id}`}>Details</Link>
+            </td>
+            <td>
+              <Button>delete</Button>
             </td>
           </tr>
         ))}

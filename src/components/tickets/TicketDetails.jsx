@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Table } from "reactstrap";
 import { getTicketById } from "../../data/serviceTicketsData";
-//import { getServiceTicket } from "../../data/serviceTicketsData";
+// import { getServiceTicket } from "../../data/serviceTicketsData";
 
 export default function TicketDetails() {
   const { id } = useParams();
@@ -11,8 +11,17 @@ export default function TicketDetails() {
 
   //add useEffect here to get the ticket details from the API
   useEffect(() => {
-    getTicketById(id).then(setTicket);
-  }, [id]);
+    const fetchTicketDetails = async () => {
+      try {
+        const ticketDetails = await getTicketById(id);
+        setTicket(ticketDetails);
+      } catch (error) {
+        console.error("Error fetching ticket details:", error);
+      }
+    };
+
+    fetchTicketDetails();
+  }, []);
 
   if (!ticket) {
     return null;
@@ -35,7 +44,7 @@ export default function TicketDetails() {
         </tr>
         <tr>
           <th scope="row">Employee</th>
-          <td>{ticket.employee?.name || "Unassigned"}</td>
+          <td>{ticket.employee.name || "Unassigned"}</td>
         </tr>
         <tr>
           <th scope="row">Completed?</th>

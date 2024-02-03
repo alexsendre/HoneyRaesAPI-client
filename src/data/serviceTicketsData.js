@@ -10,23 +10,26 @@ const getTicketById = (id) => {
   return fetch(`${_apiUrl}/${id}`).then((r) => r.json());
 };
 
-const postServiceTickets = (payload) => new Promise((resolve, reject) => {
-  fetch(`${_apiUrl}`, {
+const createTickets = async (payload) => {
+  const response = await fetch(_apiUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(payload),
-  }).then((res) => res.json())
-    .then((data) => resolve(data))
-    .catch(reject);
-});
+  });
 
+  if (!response.ok) {
+    console.error("Error Status:", response.status);
+    console.error("Error Text:", await response.text());
+    throw new Error("Process failed");
+ }
 
-
+  return response.json();
+};
 
 export {
   getServiceTickets,
-  postServiceTickets,
-  getTicketById,
+  createTickets,
+  getTicketById
 }

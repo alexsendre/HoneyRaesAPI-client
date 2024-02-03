@@ -10,8 +10,17 @@ export default function EmployeeDetails() {
 
   //add useEffect here to get the ticket details from the API
   useEffect(() => {
-    getEmployeesById(id).then(setEmployee);
-  }, [id]);
+    const fetchEmployeeDetails = async () => {
+      try {
+        const ticketDetails = await getEmployeesById(id);
+        setEmployee(ticketDetails);
+      } catch (error) {
+        console.error("Error fetching employee details:", error);
+      }
+    };
+
+    fetchEmployeeDetails();
+  }, []);
 
   if (!employee) {
     return null;
@@ -22,7 +31,7 @@ export default function EmployeeDetails() {
       <tbody>
         <tr>
           <th scope="row">Id</th>
-          <td>{employee.id}</td>
+          <td>{employee?.id}</td>
         </tr>
         <tr>
           <th scope="row">Name</th>
