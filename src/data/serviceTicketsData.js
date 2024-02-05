@@ -35,14 +35,25 @@ const deleteTicket = (id) => new Promise((resolve, reject) => {
       'Content-Type': 'application/json',
     },
   })
-    // .then((response) => response.json())
     .then((data) => resolve(data))
     .catch(reject);
+});
+
+const completeTicket = (id) => new Promise((resolve, reject) => {
+  fetch(`${_apiUrl}/${id}/complete`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((data) => resolve(data))
+    .catch(reject)
 });
 
 export {
   getServiceTickets,
   createTickets,
   getTicketById,
-  deleteTicket
+  deleteTicket,
+  completeTicket
 }

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Table } from "reactstrap";
 import { getTicketById } from "../../data/serviceTicketsData";
+import AssignEmployeeModal from "../forms/AssignEmployeeModal";
 // import { getServiceTicket } from "../../data/serviceTicketsData";
 
 export default function TicketDetails() {
@@ -44,7 +45,7 @@ export default function TicketDetails() {
         </tr>
         <tr>
           <th scope="row">Employee</th>
-          <td>{ticket.employee.name || "Unassigned"}</td>
+          <td>{ticket.employee?.name || "Unassigned" ? <AssignEmployeeModal /> : ticket.employee.name }</td>
         </tr>
         <tr>
           <th scope="row">Completed?</th>

@@ -15,3 +15,17 @@ code {
 .center {
   margin: 0 auto;
 }
+
+.assign-employees {
+  border: 1px solid black;
+  border-radius: 4px;
+  background-color: aliceblue;
+  height: 50px;
+  width: 100px;
+  margin: 10px 0 10px 0;
+}
+
+.assign-employees:hover{
+  background-color: rgb(210, 255, 210);
+  color: black;
+}
